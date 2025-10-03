@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { HiPlay, HiTruck, HiTrendingUp } from 'react-icons/hi';
-import { FaFacebook, FaLinkedin, FaInstagram } from 'react-icons/fa'; // FaTwitter removed
+// ✅ REMOVED: HiPlay, HiTruck, HiTrendingUp icons are no longer needed for brands
+import { FaFacebook, FaLinkedin, FaInstagram } from 'react-icons/fa'; 
 import logo from "../assets/logo.png";
 
 interface FooterProps {
@@ -18,10 +18,11 @@ const Footer: React.FC<FooterProps> = ({ scrollToSection, isDark }) => {
     { id: 'contact', 'label': 'Contact' },
   ];
 
+  // ✅ UPDATED: Removed icon property from brands
   const brands = [
-    { name: 'FME', icon: HiPlay },
-    { name: 'VaHaN', icon: HiTruck },
-    { name: 'GC', icon: HiTrendingUp },
+    { name: 'FME' },
+    { name: 'VaHaN' },
+    { name: 'GC' },
   ];
 
   // ✅ UPDATED: Social Links with new Instagram URL and removed Twitter
@@ -107,7 +108,7 @@ const Footer: React.FC<FooterProps> = ({ scrollToSection, isDark }) => {
                       href="#brands"
                       className={`text-base flex items-center space-x-2 ${subtitleText} hover:text-orange-600 transition-colors duration-200`}
                     >
-                      <brand.icon className="w-4 h-4" />
+                      {/* ✅ REMOVED: Brand icon is removed */}
                       <span>{brand.name}</span>
                     </a>
                   </li>
