@@ -99,6 +99,7 @@ const Brands: React.FC<BrandsProps> = ({ isDark }) => {
       id="brands" 
       className={`py-10 scroll-mt-20 ${isDark ? 'bg-gray-900' : 'bg-gray-50'}`}
     >
+      {/* 🚀 Confirmed: max-w-7xl और px-4 sm:px-6 lg:px-8 सही से लागू हैं। */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Section: ICON + HEADING + SUBTITLE */}
         <motion.div
@@ -244,7 +245,7 @@ const Brands: React.FC<BrandsProps> = ({ isDark }) => {
                   ))}
                 </div>
               </div>
-                
+                
               {/* ✅ NEW: Know More Button/Link */}
               <a
                 href={brand.link} target="_blank" className={`relative z-10 mt-auto flex items-center justify-center py-2 px-4 rounded-xl text-sm font-semibold text-white transition-all duration-300 transform group-hover:scale-[1.01] bg-gradient-to-r ${brand.color} hover:from-orange-600 hover:to-orange-700 shadow-md`}

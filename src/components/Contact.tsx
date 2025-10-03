@@ -1,219 +1,197 @@
+import React from 'react';
 import { motion } from 'framer-motion';
-import {
-  HiPhone,
-  HiMail,
-  HiLocationMarker,
-  HiPaperAirplane,
-} from 'react-icons/hi';
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaLinkedinIn,
-  FaInstagram,
-} from 'react-icons/fa';
+import { HiMail, HiLocationMarker, HiPhone } from 'react-icons/hi';
+import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  transition: { duration: 0.4, ease: 'easeInOut' },
-};
+interface ContactProps {
+  isDark: boolean;
+}
 
-const Contact = ({ isDark }: { isDark: boolean }) => {
-  // Dynamic class helpers for accessibility
-  const darkText = isDark ? 'text-white' : 'text-gray-900';
-  const lightText = isDark ? 'text-gray-300' : 'text-gray-700'; // Accessible subtitle text
-  const infoText = isDark ? 'text-gray-300' : 'text-gray-600'; // Accessible info text
-  const cardBorder = isDark ? 'bg-gray-800 border border-gray-700' : 'bg-white border border-gray-200'; // Clean White/Light Grey Border
+const Contact: React.FC<ContactProps> = ({ isDark }) => {
+  const mainText = isDark ? 'text-white' : 'text-gray-900';
+  const subText = isDark ? 'text-gray-300' : 'text-gray-700';
+  const cardBg = isDark ? 'bg-gray-800/50 border border-gray-700' : 'bg-white border border-gray-200';
+  const iconBg = isDark ? 'bg-gray-700/50' : 'bg-gray-200';
+  const socialIconBg = isDark ? 'bg-gray-700 hover:bg-orange-500' : 'bg-white border border-gray-300 hover:bg-orange-500';
 
-  const contactDetails = [
-    {
-      icon: HiPhone,
-      title: 'Phone',
-      info: '99308 86758, 99308 86785',
-      link: 'tel:9930886758',
-      color: 'bg-orange-500', 
-    },
-    {
-      icon: HiMail,
-      title: 'Email',
-      info: 'Info@sharmabusiness.in',
-      link: 'mailto:Info@sharmabusiness.in',
-      color: 'bg-orange-400', 
-    },
-    {
-      icon: HiLocationMarker,
-      title: 'Address',
-      info: 'Business District, Mumbai, India',
-      link: null,
-      color: 'bg-yellow-600', 
-    },
-  ];
+  const contactInfo = [
+    {
+      icon: HiLocationMarker,
+      title: 'Our Office',
+      details: 'House No. 14, Chandrakant Bhavan, Chimat Pada, Marol Naka, Andheri East, Mumbai 400059. Near Marol Naka Metro Station.',
+      link: 'https://www.google.com/maps?q=19.1055111,72.8785601&z=17&hl=en',
+      type: 'address'
+    },
+    {
+      icon: HiMail,
+      title: 'Email Us',
+      details: 'Info@sharmabusiness.in',
+      link: 'mailto:Info@sharmabusiness.in',
+      type: 'email'
+    },
+    {
+      icon: HiPhone,
+      title: 'Call Us',
+      details: [
+        { number: '99308 86758', link: 'tel:+919930886758' },
+        { number: '99308 86785', link: 'tel:+919930886785' }
+      ],
+      type: 'phone'
+    },
+  ];
+  
+  const socialLinks = [
+    { 
+      icon: FaFacebook, 
+      href: 'https://www.facebook.com/people/Sharma-Business/61558862323469/', 
+      name: 'Facebook'
+    },
+    { 
+      icon: FaInstagram, 
+      href: 'https://www.instagram.com/_sharmabusiness', 
+      name: 'Instagram'
+    },
+    { 
+      icon: FaLinkedin, 
+      href: 'https://www.linkedin.com/company/sharma-business/', 
+      name: 'LinkedIn'
+    },
+  ];
 
-  // ✅ FACEBOOK LINK UPDATED
-  const socialLinks = [
-    {
-      icon: FaFacebookF,
-      name: 'Facebook',
-      href: 'https://www.facebook.com/people/Sharma-Business/61558862323469/', // ⬅️ Updated link
-      color: 'hover:bg-blue-600',
-      textColor: 'text-blue-600',
-    },
-    {
-      icon: FaTwitter,
-      name: 'Twitter',
-      href: 'https://www.twitter.com/',
-      color: 'hover:bg-blue-400',
-      textColor: 'text-blue-400',
-    },
-    {
-      icon: FaLinkedinIn,
-      name: 'LinkedIn',
-      href: 'https://www.linkedin.com/company/sharma-business/',
-      color: 'hover:bg-blue-700',
-      textColor: 'text-blue-700',
-    },
-    {
-      icon: FaInstagram,
-      name: 'Instagram',
-      href: 'https://www.instagram.com/first_movers',
-      color: 'hover:bg-pink-500',
-      textColor: 'text-pink-500',
-    },
-  ];
+  // Helper function to render individual contact cards
+  const renderContactCard = (item: any, index: number) => {
+    let content;
 
-  return (
-    <section id="contact" className={`min-h-screen py-12 px-4 sm:px-6 lg:px-8 scroll-mt-20 ${isDark ? 'bg-gray-900' : 'bg-white'}`}> {/* Setting base background for clarity */}
-      <motion.div
-        className="mb-10 max-w-7xl mx-auto"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={{
-          hidden: {},
-          visible: {
-            transition: { staggerChildren: 0.15 },
-          },
-        }}
-      >
-        <div className="flex items-center space-x-3">
-          <motion.div
-            className="relative w-fit"
-            variants={{
-              hidden: { opacity: 0, scale: 0.8, rotate: -20 },
-              visible: { opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.5 } },
-            }}
-          >
-            {/* Gradient colors to Orange/Yellow */}
-            <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-yellow-600 rounded-full blur opacity-75" />
-            <div className="relative p-3 bg-gradient-to-r from-orange-500 to-yellow-600 rounded-full">
-              <HiPaperAirplane className="w-8 h-8 text-white" />
-            </div>
-          </motion.div>
+    if (item.type === 'phone') {
+      content = (
+        <div className="space-y-1">
+          {item.details.map((phoneDetail: { number: string, link: string }, phoneIndex: number) => (
+            <a
+              key={phoneIndex}
+              href={phoneDetail.link}
+              // Text size restored to original 'text-base'
+              className={`block text-base font-medium ${subText} hover:text-orange-500 transition-colors duration-200 break-words`} 
+            >
+              {phoneDetail.number}
+            </a>
+          ))}
+        </div>
+      );
+    } else {
+      content = (
+        <a 
+          href={item.link} 
+          target={item.link.startsWith('http') || item.link.startsWith('mailto') ? "_blank" : "_self"}
+          rel="noopener noreferrer"
+          // Text size restored to original 'text-base'
+          className={`block text-base font-medium ${subText} hover:text-orange-500 transition-colors duration-200 break-words`}
+        >
+          {item.details}
+        </a>
+      );
+    }
 
-          <motion.h2
-            className={`text-3xl md:text-4xl font-bold ${darkText}`}
-            variants={{
-              hidden: { opacity: 0, x: -30 },
-              visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: 'easeOut' } },
-            }}
-          >
-            Connect With Us
-          </motion.h2>
-        </div>
+    return (
+      <div
+        key={index}
+        // Padding restored to p-6 (or use p-5 for slight reduction)
+        className={`p-6 rounded-2xl ${cardBg} shadow-lg transition-all duration-300 hover:shadow-xl flex flex-col items-start lg:items-center text-left lg:text-center`}
+      >
+        {/* Icon and Title/Content Wrapper - Mobile View (Applies up to lg size, i.e., including all your target pixels) */}
+        <div className="flex items-start lg:hidden w-full">
+          <div 
+            className={`w-16 h-16 mr-4 mb-0 rounded-xl flex items-center justify-center flex-shrink-0 ${iconBg}`}
+          >
+            <item.icon className="w-8 h-8 text-orange-600" />
+          </div>
+          
+          <div className="flex-grow min-w-0"> 
+            <h3 className={`text-xl font-bold mb-2 ${mainText}`}>{item.title}</h3>
+            <div className={`block ${item.type !== 'phone' ? 'mb-2' : ''}`}> 
+              {content}
+            </div>
+          </div>
+        </div>
+        
+        {/* Desktop View - Centered Content (This will ONLY apply above 1024px) */}
+        <div className="hidden lg:flex lg:flex-col lg:items-center w-full h-full"> 
+            <div 
+                className={`w-16 h-16 mx-auto mb-4 rounded-xl flex items-center justify-center flex-shrink-0 ${iconBg}`}
+            >
+              <item.icon className="w-8 h-8 text-orange-600" />
+            </div>
+            <h3 className={`text-xl font-bold mb-2 ${mainText}`}>{item.title}</h3>
+            <div className='flex-grow flex flex-col justify-center'>
+                {content}
+            </div>
+        </div>
+      </div>
+    );
+  };
+  
+  return (
+    <section 
+      id="contact" 
+      className={`py-10 ${isDark ? 'bg-gray-900' : 'bg-gray-50'} scroll-mt-20`}
+    >
+      {/* 🎯 MODIFIED: max-w-6xl को max-w-7xl में बदला गया है। */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h2 className={`text-4xl font-bold mb-4 ${mainText}`}>
+            Get in Touch
+          </h2>
+          <p className={`text-xl ${subText} max-w-2xl mx-auto`}>
+            We'd love to hear from you. Find us using the details below.
+          </p>
+        </motion.div>
 
-        <motion.p
-          className={`mt-3 ml-16 text-base md:text-lg ${lightText}`} // ✅ MODIFIED: Using lightText (text-gray-700)
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          We’d love to hear from you!
-        </motion.p>
-      </motion.div>
-
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-6">
-        <div className="grid gap-4">
-          {contactDetails.map((contact, index) => (
-            <motion.div
-              key={index}
-              className={`relative overflow-hidden flex items-center space-x-5 p-6 rounded-2xl h-full transition-all group
-              ${cardBorder} hover:shadow-xl`} // ✅ MODIFIED: Using cardBorder
-              variants={fadeInUp}
-              whileHover={{ scale: 1.02 }}
-            >
-              <div className={`p-4 rounded-xl shadow-md ${contact.color}`}>
-                <contact.icon className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <p className={`font-bold ${darkText}`}>
-                  {contact.title}
-                </p>
-                {contact.link ? (
-                  <a
-                    href={contact.link}
-                    className={`text-sm ${infoText} group-hover:underline hover:text-black`} // ✅ MODIFIED: Using infoText (text-gray-600)
-                  >
-                    {contact.info}
-                  </a>
-                ) : (
-                  <p className={`text-sm ${infoText}`}> {/* ✅ MODIFIED: Using infoText (text-gray-600) */}
-                    {contact.info}
-                  </p>
-                )}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="grid gap-4">
-          <motion.div
-            className={`p-6 rounded-2xl transition-all ${cardBorder} hover:shadow-xl`} // ✅ MODIFIED: Using cardBorder
-            variants={fadeInUp}
-            whileHover={{ scale: 1.02 }}
-          >
-            <h3
-              className={`text-lg font-semibold mb-2 ${darkText}`}
-            >
-              Business Hours
-            </h3>
-            <ul
-              className={`text-sm space-y-1 ${infoText}`} // ✅ MODIFIED: Using infoText (text-gray-600)
-            >
-              <li>Mon - Fri: 9:00 AM - 6:00 PM</li>
-              <li>Saturday: 10:00 AM - 4:00 PM</li>
-              <li>Sunday: Closed</li>
-            </ul>
-          </motion.div>
-
-          <div className="grid grid-cols-2 gap-3">
-            {socialLinks.map((social, index) => (
-              <motion.a
-                key={index}
-                href={social.href}
-                target="_blank" 
-                rel="noopener noreferrer"
-                className={`group flex items-center space-x-3 p-4 rounded-2xl transition-all ${cardBorder} hover:shadow-xl ${social.color}`} // ✅ MODIFIED: Using cardBorder
-                variants={fadeInUp}
-                whileHover={{ scale: 1.05 }}
-              >
-                <social.icon
-                  className={`w-6 h-6 ${social.textColor} group-hover:text-white transition-colors duration-300`}
-                />
-                <span
-                  className={`font-semibold text-sm ${
-                    isDark ? 'text-white' : 'text-gray-800'
-                  } group-hover:text-white hover:text-black`}
-                >
-                  {social.name}
-                </span>
-              </motion.a>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+        {/* Info Cards Grid */}
+        <motion.div
+          // ✅ FIX: Changed md:grid-cols-3 to lg:grid-cols-3. 
+          // This ensures that all target resolutions (768-912px) use the default grid-cols-1 (single column)
+          className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          {contactInfo.map((item, index) => renderContactCard(item, index))}
+        </motion.div>
+        
+        {/* Social Links Section */}
+        <motion.div
+          className="text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+        >
+          <h3 className={`text-xl sm:text-2xl font-semibold sm:font-bold mb-6 ${mainText}`}>
+            Connect with us on Social Media
+          </h3>
+          <div className="flex justify-center space-x-6">
+            {socialLinks.map((social, index) => (
+              <a
+                key={index}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 ${socialIconBg}`}
+              >
+                <social.icon className={`w-6 h-6 ${isDark ? 'text-gray-300' : 'text-gray-600'} hover:text-white transition-colors`} />
+              </a>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
 };
 
 export default Contact;
