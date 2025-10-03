@@ -83,12 +83,16 @@ const Navbar: React.FC<NavbarProps> = ({
             </span>
           </a>
 
-          <div className="hidden lg:flex items-center space-x-1">
+          {/* ✅ MODIFICATION: Added 'relative z-10' and changed vertical padding 
+            to ensure the active link's shadow is not clipped by the Navbar container.
+          */}
+          <div className="hidden lg:flex items-center space-x-1 relative z-10 pt-2 pb-4">
             {navLinks.map((link) => (
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className={`relative px-4 py-2 rounded-lg text-base font-medium transition-all duration-500 group cursor-pointer ${linkClasses(link.id)}`}
+                // Changed 'py-2' to 'pt-2 pb-2' to allow space for bottom shadow
+                className={`relative px-4 pt-2 pb-2 rounded-lg text-base font-medium transition-all duration-500 group cursor-pointer ${linkClasses(link.id)}`}
               >
                 {link.label}
               </button>
