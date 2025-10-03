@@ -14,12 +14,12 @@ const ScrollToTop: React.FC<ScrollToTopProps> = ({ showScrollTop, isDark, scroll
       {showScrollTop && (
         <motion.button
           onClick={scrollToTop}
-          className={`fixed bottom-6 right-6 p-4 rounded-full shadow-2xl z-40 transition-all duration-300 text-white
+          className={`z-40 shadow-2xl bottom-6 cursor-pointer transition-all duration-300 p-4 fixed rounded-full text-white right-6
             ${
-              // ✅ MODIFIED: Using Orange colors for the button
+              // Modified for dark/light theme colors
               isDark
-                ? 'bg-orange-600 hover:bg-orange-700 shadow-orange-500/30' // Darker orange for dark mode
-                : 'bg-orange-500 hover:bg-orange-600 shadow-orange-400/30' // Lighter orange for light mode
+                ? 'hover:bg-orange-700 bg-orange-600 shadow-orange-500/30'
+                : 'hover:bg-orange-600 shadow-orange-400/30 bg-orange-500'
             }`}
           initial={{ opacity: 0, scale: 0, rotate: -180 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
@@ -28,7 +28,7 @@ const ScrollToTop: React.FC<ScrollToTopProps> = ({ showScrollTop, isDark, scroll
           whileTap={{ scale: 0.9 }}
           transition={{ duration: 0.2 }}
         >
-          <HiChevronUp className="w-6 h-6" />
+          <HiChevronUp className="h-6 w-6" />
         </motion.button>
       )}
     </AnimatePresence>

@@ -21,8 +21,8 @@ function App() {
       const sections = ['home', 'about', 'vision', 'mission', 'brands', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
-      setShowScrollTop(window.scrollY > 400);
       setNavbarBg(window.scrollY > 50);
+      setShowScrollTop(window.scrollY > 400);
 
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -43,18 +43,16 @@ function App() {
   }, []);
 
   const toggleTheme = () => {
-    setIsDark(!isDark);
+    setIsDark(prev => !prev);
   };
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
-    const offset = 80; // adjust as per your navbar height
-
+    const offset = 80;
     if (element) {
-      const y = element.getBoundingClientRect().top + window.pageYOffset - offset;
+      const y = element.getBoundingClientRect().top + window.pageYOffset - offset; 
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
-
     setIsMenuOpen(false);
   };
 
@@ -63,29 +61,29 @@ function App() {
   };
 
   return (
-    <div className={`min-h-screen transition-all duration-500 ${isDark ? 'dark bg-gray-900' : 'bg-white'}`}>
+    <div className={`transition-all duration-500 min-h-screen ${isDark ? 'bg-gray-900 dark' : 'bg-white'}`}>
       <Navbar
+        activeSection={activeSection}
         isDark={isDark}
         isMenuOpen={isMenuOpen}
-        activeSection={activeSection}
         navbarBg={navbarBg}
         toggleTheme={toggleTheme}
         setIsMenuOpen={setIsMenuOpen}
         scrollToSection={scrollToSection}
       />
 
-      <Hero isDark={isDark} scrollToSection={scrollToSection} />
+      <Hero scrollToSection={scrollToSection} isDark={isDark} />
       <About isDark={isDark} />
       <Vision isDark={isDark} />
       <Mission isDark={isDark} />
       <Brands isDark={isDark} />
       <Contact isDark={isDark} />
-      <Footer isDark={isDark} scrollToSection={scrollToSection} />
+      <Footer scrollToSection={scrollToSection} isDark={isDark} />
 
       <ScrollToTop
+        scrollToTop={scrollToTop}
         showScrollTop={showScrollTop}
         isDark={isDark}
-        scrollToTop={scrollToTop}
       />
     </div>
   );

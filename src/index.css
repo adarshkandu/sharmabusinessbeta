@@ -1,37 +1,27 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-/* Custom scrollbar and smooth scroll */
+/* Smooth scroll and custom scrollbar */
 html {
-  /* Scrollbar removal/styling for cross-browser compatibility */
-  scrollbar-width: none; /* Firefox: Hides scrollbar (You rely on JS for smooth scroll) */
-  -ms-overflow-style: none; /* Internet Explorer 10+: Hides scrollbar */
-  
-  /* Smooth scrolling (Useful as a fallback, though you use JS in App.tsx) */
-  scroll-behavior: smooth; 
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
 }
 
 html, body {
-  overflow-x: hidden; /* Prevents horizontal scrolling */
+  overflow-x: hidden;
   width: 100%;
 }
 
-/* -------------------------------------- */
-/* Webkit Scrollbar Styling (Chrome/Safari) */
-/* -------------------------------------- */
-
 ::-webkit-scrollbar {
-  width: 6px; /* Scrollbar width */
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 
-/* Light Mode Thumb */
+/* Light mode thumb */
 ::-webkit-scrollbar-thumb {
-  background: #3b82f6; /* Blue for contrast */
+  background: #3b82f6;
   border-radius: 3px;
   opacity: 0.7;
 }
@@ -41,20 +31,16 @@ html, body {
   opacity: 1;
 }
 
-/* -------------------------------------- */
-/* Dark Mode Scrollbar Overrides */
-/* -------------------------------------- */
-
-/* Webkit Dark Mode Thumb */
+/* Dark mode thumb */
 .dark ::-webkit-scrollbar-thumb {
-  background: #6366f1; /* Indigo */
+  background: #6366f1;
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {
   background: #4f46e5;
 }
 
-/* Firefox Dark Mode Color */
+/* Firefox dark mode */
 .dark {
   scrollbar-color: #6366f1 transparent;
 }

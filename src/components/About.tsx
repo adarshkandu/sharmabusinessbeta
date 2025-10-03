@@ -21,41 +21,32 @@ const About: React.FC<AboutProps> = ({ isDark }) => {
     }
   };
 
-  // Dynamic classes for Light/Dark Mode consistency
-  const sectionBg = isDark ? 'bg-gray-800/50' : 'bg-white'; // ✅ Changed to bg-white for cleaner look
-
-  const lightCardBg = isDark 
-    ? 'bg-gray-700/50 border border-gray-600' 
-    : 'bg-gray-100 border border-gray-300'; // ✅ Light Card: Accessible light grey background
-
-  const lightText = isDark ? 'text-gray-300' : 'text-gray-700'; // ✅ Light Text: Accessible dark grey
-  const darkText = isDark ? 'text-white' : 'text-gray-900';     // Dark Text (Heading)
-
-  const tagClasses = isDark 
-    ? 'bg-gray-700/50 text-orange-400 border border-gray-600' 
-    : 'bg-gray-100 text-orange-600 border border-gray-300'; // ✅ Tag: Light Grey background, orange accent
+  const sectionBg = isDark ? 'bg-gray-800/50' : 'bg-white';
+  const lightCardBg = isDark ? 'border border-gray-600 bg-gray-700/50' : 'border border-gray-300 bg-gray-100';
+  const lightText = isDark ? 'text-gray-300' : 'text-gray-700';
+  const darkText = isDark ? 'text-white' : 'text-gray-900';
+  const tagClasses = isDark ? 'border border-gray-600 text-orange-400 bg-gray-700/50' : 'border border-gray-300 text-orange-600 bg-gray-100';
 
   return (
-    <section id="about" className={`min-h-screen scroll-mt-20 py-16 ${sectionBg}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className={`py-16 scroll-mt-20 ${sectionBg}`}>
+      <div className="px-4 max-w-7xl sm:px-6 lg:px-8 mx-auto">
         <motion.div 
-          className="text-center mb-16"
+          className="mb-16 text-center"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          {/* Tag/Badge */}
-          <div className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-medium mb-6 ${tagClasses}`}>
-            <HiOfficeBuilding className="w-4 h-4 mr-2" />
+          <div className={`font-medium inline-flex rounded-full text-sm px-4 py-2 mb-6 items-center ${tagClasses}`}>
+            <HiOfficeBuilding className="h-4 w-4 mr-2" />
             About Sharma Business
           </div>
-          <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${darkText}`}>
+          <h2 className={`mb-6 font-bold text-4xl md:text-5xl ${darkText}`}>
             Excellence Through Innovation
           </h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid gap-12 items-center lg:grid-cols-2">
           <motion.div 
             className="space-y-6"
             initial={{ opacity: 0, x: -50 }}
@@ -64,14 +55,14 @@ const About: React.FC<AboutProps> = ({ isDark }) => {
             viewport={{ once: true }}
           >
             <div>
-              <h3 className={`text-2xl font-bold mb-4 ${darkText}`}>
+              <h3 className={`mb-4 text-2xl font-bold ${darkText}`}>
                 Our Foundation
               </h3>
-              <p className={`text-lg mb-4 ${lightText} leading-relaxed`}>
+              <p className={`mb-4 leading-relaxed text-lg ${lightText}`}>
                 Sharma Business is a dynamic, multi-tasking company housing multiple successful brands under one umbrella. 
                 The company has grown to serve over 800 clients across various industries with a strong commitment to excellence and innovation.
               </p>
-              <p className={`text-lg ${lightText} leading-relaxed`}>
+              <p className={`leading-relaxed text-lg ${lightText}`}>
                 Our diverse portfolio spans entertainment, travel, and financial consulting, allowing us to offer 
                 comprehensive solutions that drive success across multiple sectors while maintaining the highest 
                 standards of quality and customer satisfaction.
@@ -79,7 +70,7 @@ const About: React.FC<AboutProps> = ({ isDark }) => {
             </div>
 
             <motion.div 
-              className="flex flex-wrap gap-3"
+              className="gap-3 flex flex-wrap"
               variants={staggerContainer}
               initial="initial"
               whileInView="animate"
@@ -88,10 +79,7 @@ const About: React.FC<AboutProps> = ({ isDark }) => {
               {['Innovation', 'Excellence', 'Reliability', 'Growth'].map((value, index) => (
                 <motion.div
                   key={index}
-                  // ✅ MODIFICATION: Tag color scheme for Light/Dark Mode
-                  className={`px-4 py-2 rounded-full text-sm font-medium ${
-                    isDark ? 'bg-gray-700 text-gray-300 border border-gray-600' : 'bg-gray-100 text-orange-600 border border-gray-300'
-                  } shadow-lg hover:shadow-xl transition-all duration-300`}
+                  className={`duration-300 shadow-lg hover:shadow-xl px-4 py-2 rounded-full text-sm font-medium ${isDark ? 'border border-gray-600 bg-gray-700 text-gray-300' : 'border border-gray-300 bg-gray-100 text-orange-600'}`}
                   variants={fadeInUp}
                   whileHover={{ y: -2 }}
                 >
@@ -101,7 +89,6 @@ const About: React.FC<AboutProps> = ({ isDark }) => {
             </motion.div>
           </motion.div>
 
-          {/* Right Content Card */}
           <motion.div 
             className="relative"
             initial={{ opacity: 0, x: 50 }}
@@ -109,15 +96,12 @@ const About: React.FC<AboutProps> = ({ isDark }) => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className={`p-8 rounded-3xl ${lightCardBg} shadow-2xl transition-all duration-300`}>
+            <div className={`shadow-2xl rounded-3xl transition-all duration-300 p-8 ${lightCardBg}`}>
               <div className="text-center">
-                <div
-                  // Icon container maintains the orange gradient
-                  className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-orange-500 via-orange-600 to-orange-400 rounded-full flex items-center justify-center"
-                >
+                <div className="flex items-center justify-center w-20 h-20 mx-auto mb-6 bg-gradient-to-r rounded-full from-orange-500 via-orange-600 to-orange-400">
                   <HiOfficeBuilding className="w-10 h-10 text-white" />
                 </div>
-                <h4 className={`text-xl font-bold mb-3 ${darkText}`}>
+                <h4 className={`mb-3 font-bold text-xl ${darkText}`}>
                   800+ Happy Clients
                 </h4>
                 <p className={`${lightText}`}>
