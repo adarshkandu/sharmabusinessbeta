@@ -126,7 +126,7 @@ const Navbar: React.FC<NavbarProps> = ({
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className={`relative px-4 py-2 rounded-lg text-base font-medium transition-all duration-300 ease-in-out group ${desktopLinkClasses(link.id)}`}
+                className={`relative px-4 py-2 rounded-lg text-base font-medium transition-all duration-300 ease-in-out group cursor-pointer ${desktopLinkClasses(link.id)}`}
               >
                 {link.label}
               </button>
@@ -138,7 +138,7 @@ const Navbar: React.FC<NavbarProps> = ({
             <button
               onClick={toggleTheme}
               // Theme Toggle Button styling
-              className={`p-2 rounded-full transition duration-300 ${
+              className={`p-2 rounded-full transition duration-300 cursor-pointer ${ // ✅ ADDED: cursor-pointer
                 isDark 
                   ? 'text-gray-300 hover:text-white' // ✅ UPDATED: Removed hover:bg-orange-600
                   : 'text-orange-600 hover:text-black' // ✅ UPDATED: Removed hover:bg-orange-600, changed hover:text-white to hover:text-black for light mode
@@ -150,7 +150,7 @@ const Navbar: React.FC<NavbarProps> = ({
 
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`lg:hidden transition duration-300 ${isDark ? 'text-white' : 'text-orange-600'}`}
+              className={`lg:hidden transition duration-300 cursor-pointer ${isDark ? 'text-white' : 'text-orange-600'}`} // ✅ ADDED: cursor-pointer
             >
               {/* Icon size is w-7 h-7 */}
               {isMenuOpen ? <HiX className="w-7 h-7" /> : <HiMenu className="w-7 h-7" />}
@@ -179,7 +179,7 @@ const Navbar: React.FC<NavbarProps> = ({
                   <button
                     key={link.id}
                     onClick={() => scrollToSectionMobile(link.id)}
-                    className={`block w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-all duration-300 ease-in-out ${mobileLinkClasses(link.id)}`}
+                    className={`block w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-all duration-300 ease-in-out cursor-pointer ${mobileLinkClasses(link.id)}`} // ✅ ADDED: cursor-pointer
                   >
                     {link.label}
                   </button>
