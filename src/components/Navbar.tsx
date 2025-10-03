@@ -140,8 +140,8 @@ const Navbar: React.FC<NavbarProps> = ({
               // Theme Toggle Button styling
               className={`p-2 rounded-full transition duration-300 ${
                 isDark 
-                  ? 'text-gray-300 hover:bg-orange-600 hover:text-white' 
-                  : 'text-orange-600 hover:bg-orange-600 hover:text-white'
+                  ? 'text-gray-300 hover:text-white' // ✅ UPDATED: Removed hover:bg-orange-600
+                  : 'text-orange-600 hover:text-black' // ✅ UPDATED: Removed hover:bg-orange-600, changed hover:text-white to hover:text-black for light mode
               }`}
             >
               {/* Icon size is w-6 h-6 */}
