@@ -109,7 +109,7 @@ const Navbar: React.FC<NavbarProps> = ({
         <div className="flex justify-between items-center h-16 lg:h-20"> {/* ✅ MODIFIED: h-16 for mobile, lg:h-20 for desktop */}
           {/* Logo */}
           <a
-            href="https://adarshkandu.vercel.app"
+            href="https://sharmabusiness.in"
             rel="noopener noreferrer"
             className="flex items-center space-x-3 cursor-pointer"
           >
